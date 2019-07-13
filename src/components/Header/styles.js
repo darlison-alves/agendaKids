@@ -14,15 +14,11 @@ export const HeaderBody = styled.View`
     flex: 1;
     flexDirection: row;
 `
-
-
 export const ContainerSidebar = styled.View `
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
 `
-
-
 
 export const SidebarText = styled.Text``
