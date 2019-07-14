@@ -1,11 +1,34 @@
 import React from 'react'
-import { Text } from 'react-native'
-import { Container } from "./styles";
+import Icon from 'react-native-vector-icons/EvilIcons'
+import { View, Image } from 'react-native'
+import { Container, CardBody, CardTitle, LIGHTGREY, CardDescriptionBody, CardSubDescriptionBody, CardDescription, CardSubDescription, CardFooterText, ContainerImage } from "./styles";
 
-export default function CardEvent() {
-    return(
+export default function CardEvent({ 
+    title="Eventos",
+    description="",
+    hora = '14:00',
+    footerText="",
+    image=""
+ }) {
+    return (
         <Container>
-            <Text>hi there</Text>
+            <ContainerImage>
+                <Image
+                    style={{width: 70, height: 90}}
+                    source={{uri: image}}
+                />
+            </ContainerImage>
+            <CardBody>
+                <CardTitle>{title}</CardTitle>
+                <CardDescriptionBody>
+                    <CardDescription>{description}</CardDescription>
+                    <CardSubDescriptionBody>
+                        <Icon name="clock" size={20} color={LIGHTGREY} /><CardSubDescription> {hora}</CardSubDescription>
+                    </CardSubDescriptionBody>                    
+                </CardDescriptionBody>
+                
+                <CardFooterText>{footerText}</CardFooterText>
+            </CardBody>
         </Container>
     )
 }

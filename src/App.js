@@ -1,15 +1,18 @@
 import React from 'react'
 import { View, StatusBar } from 'react-native'
+import { Provider } from 'react-redux'
 
-import CardEvent from "./components/cards/card-event";
 import Headerbar from './components/Header/Header';
+import ListEvents from './pages/ListEvents';
+
+import store from './reducers/store'
+import AppNavigator from './navigation/AppNavigator';
+
 
 export default function App () {
     return(
-        <View>
-            <StatusBar barStyle="dark-content" hidden={false} />
-            <Headerbar />            
-            
-        </View>
+        <Provider store={store}  >            
+            <AppNavigator/>
+        </Provider>
     )
 }
