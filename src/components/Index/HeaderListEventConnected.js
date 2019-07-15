@@ -7,7 +7,9 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({getListEvent}, dispatch);
 
 const mapStateToProps = state => ({
-  listEvents: state.events.data
+  listEvents: state.events.data,
+  loading: state.events.loading,
+  metadata: state.events.metadata,
 });
 
 const HeaderListEventConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderListEvent)

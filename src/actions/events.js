@@ -1,24 +1,34 @@
 import axios from 'axios';
 import qs from 'qs'
+import { AsyncStorage } from 'react-native'
 
-import { GET_EVENTS } from '../reducers/Events';
-import { NameOfMonth } from '../constants/Helpers';
+import { GET_EVENTS, GET_EVENTS_LOADING } from '../reducers/Events';
+import { NameOfMonth, uuidv4 } from '../constants/Helpers';
+import { URL_API } from '../constants/Api';
 
-const apiBase = (method = 'GET', headers, data = {}) => {
+const apiBase = async (method = 'GET', headers, data = {}) => {
     return axios.create(
         {
-            baseURL: 'https://frontend-test.agendaedu.com/api/events',
+            baseURL: URL_API,
             method,
             data,
-            headers: { ...headers, token: '3O701JINSMVIRtuuB7fY1SZ37bYIqDoPTs1auRYzHzLzxXXcuxvptQaowASztVJzAnGl6X00MRIZYjOTAN9SDt0rMZ47EfCNrAWB2oadSedsKbGGx2FRE9HnnloCs0sbONRvpqg5YmI7lrZ90RhrKGI' }
+            headers: { ...headers, token: await AsyncStorage.getItem('@TOKEN')}
         }
     )
 }
 
-export const getListEvent = () => dispatch => {
-    apiBase({ limit: 10, page: 1 }).get(`?limit=10&page=1`).then(result => {
-        //dispatch({ type: GET_EVENTS, payload: result.data })
-        dispatch(montandoLista(result.data.data))
+export const getListEvent = (page = 1, limit=10) => async (dispatch, getState) => {
+    const { events } = getState()
+
+    if(page > events.metadata.total_pages) {
+        dispatch({ type: GET_EVENTS, payload: { data: [], metadata: events.metadata } })
+        return;
+    }
+    console.log('page', page)
+    dispatch({type: GET_EVENTS_LOADING})
+    const api = await apiBase();
+    api.get(`/events?limit=${limit}&page=${page}`).then(result => {        
+        dispatch(montandoLista(result.data))
     }).catch(err => {
         console.log('dededed', err)
         dispatch({ type: GET_EVENTS, payload: [] })
@@ -26,14 +36,13 @@ export const getListEvent = () => dispatch => {
 }
 
 
-const montandoLista = (lista = []) => dispatch => {
+const montandoLista = (data) => dispatch => {
     let novalista = []
-    let listaTemp = []
+    let listaTemp = []    
+    let lista = data.data
     
     NameOfMonth.forEach(value => {
-               
-
-        lista.forEach(item => {
+        lista.forEach((item, index) => {
             const data = new Date(item.startAt)
             const month = NameOfMonth[data.getMonth()]
             const dia = data.getDate()
@@ -43,7 +52,7 @@ const montandoLista = (lista = []) => dispatch => {
 
                 if(!tem.length) {
                     listaTemp.push({
-                        "id": `${dia}-${value}`,
+                        "id": uuidv4(),
                         "title": value,
                         "dia": dia,
                         "startAt": item.startAt,
@@ -63,5 +72,5 @@ const montandoLista = (lista = []) => dispatch => {
 
     })  
 
-    dispatch({ type: GET_EVENTS, payload: { data: novalista } })
+    dispatch({ type: GET_EVENTS, payload: { data: novalista, metadata: data.metadata } })
 }

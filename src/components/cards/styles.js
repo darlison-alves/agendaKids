@@ -35,6 +35,7 @@ export const CardDescription = styled.Text `
 `
 
 export const CardSubDescriptionBody = styled.View `
+    alignItems: center;
     flexDirection: row;
     marginTop: 2px;
 `

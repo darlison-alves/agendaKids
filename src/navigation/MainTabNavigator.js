@@ -1,8 +1,9 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import ListEvents from '../pages/ListEvents';
 import Details from '../pages/Details';
+import Login from '../pages/Login';
 
 
 const config = Platform.select({
@@ -13,9 +14,10 @@ const config = Platform.select({
 const HomeStack = createStackNavigator(
   {
     Home: ListEvents,
-    Details: Details
+    Details: Details,
+    Login: Login
   },
-  {...config, initialRouteName: 'Details'}
+  {...config, initialRouteName: 'Login'}
 );
 HomeStack.path = '';
 
