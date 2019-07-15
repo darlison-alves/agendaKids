@@ -11,14 +11,23 @@ export const Container = styled.View`
     width: 100%;
     height: auto;
     borderColor: ${PURPLE}
-    borderRadius: 4px;
+    borderRadius: 5px;
     borderLeftWidth: 4px;    
     zIndex: 2;
     marginTop: 8px;
+    shadow-color: #733DBE;
+    shadowOpacity: 0.5;
+    shadowRadius: 3;
+    shadowOffset: {
+      height: 0,
+      width: 0,
+    };
+    elevation: 2;
 `
 
 export const CardBody = styled.View`
-    flexDirection: column
+    flexDirection: column;
+    marginLeft: 10
 `
 export const CardTitle = styled.Text`
     fontSize: 14px;
@@ -53,7 +62,7 @@ export const CardFooterText = styled.Text`
 
 
 export const ContainerImage = styled.View `
-    margin: 0px 10px 0px 10px
+    margin: 0px 5px 0px 10px
 `
 
 export const StyledView = styled.View`

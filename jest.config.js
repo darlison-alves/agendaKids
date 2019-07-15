@@ -1,6 +1,8 @@
 module.exports = {
-    preset: 'react-native',
-    transform: {
-      '^.+\\.js$': require.resolve('react-native/jest/preprocessor.js'),
-    },
-  };
+  "name": "my-project",
+  "jest": {
+    "verbose": true
+  },
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+}
+;

@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { View, Text, Spinner } from "native-base";
 import { KeyboardAvoidingView, TouchableOpacity } from 'react-native'
-import { Container, Input, ContainerInput, InputLable, TitleLogin, HeaderLogin, ButtonLogin, touchableOpaciity, TextButton, TextError, TextErrorContainer, SpinnerSubmit, spinnerStyle } from './styles';
+import { Container, Input, ContainerInput, InputLable, TitleLogin, HeaderLogin, touchableOpaciity, TextButton, TextError, TextErrorContainer, SpinnerSubmit, spinnerStyle } from './styles';
 import Colors from '../../constants/Colors';
 
 export default function Form (props) {
