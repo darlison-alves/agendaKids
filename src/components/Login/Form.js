@@ -1,8 +1,8 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { View, Text } from "native-base";
+import { View, Text, Spinner } from "native-base";
 import { KeyboardAvoidingView, TouchableOpacity } from 'react-native'
-import { Container, Input, ContainerInput, InputLable, TitleLogin, HeaderLogin, ButtonLogin, touchableOpaciity, TextButton, TextError, TextErrorContainer } from './styles';
+import { Container, Input, ContainerInput, InputLable, TitleLogin, HeaderLogin, ButtonLogin, touchableOpaciity, TextButton, TextError, TextErrorContainer, SpinnerSubmit, spinnerStyle } from './styles';
 import Colors from '../../constants/Colors';
 
 export default function Form (props) {
@@ -23,7 +23,6 @@ export default function Form (props) {
 
         setError('')
 
-
         props.login(dataInput, props.navigation.navigate)
     }
 
@@ -38,7 +37,7 @@ export default function Form (props) {
             </HeaderLogin>
             
             <TextErrorContainer>            
-                { error ? (
+                {  props.error || error ? (
                 <> 
                     <Icon name="exclamation-circle" style={{ marginRight: 10 }} size={36} color="red" /> 
                     <TextError>
@@ -60,10 +59,15 @@ export default function Form (props) {
                 <Icon name="eye-slash" style={{ marginRight: 10 }} size={36} color={Colors.greyMedium} />
             </ContainerInput>   
             </KeyboardAvoidingView>
+            
+            {
+                props.loading ?  <Spinner color={Colors.purple} size={50} style={spinnerStyle} />:
 
-            <TouchableOpacity style={touchableOpaciity} onPress={() => login() } >
-                <TextButton>Entrar</TextButton>
-            </TouchableOpacity>
+                                <TouchableOpacity style={touchableOpaciity} onPress={() => login() } >                                   
+                                    <TextButton>Entrar</TextButton>
+                                </TouchableOpacity>
+            }
+            
         </Container>
     )
 }

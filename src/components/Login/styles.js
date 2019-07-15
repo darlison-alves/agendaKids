@@ -71,6 +71,15 @@ export const touchableOpaciity = {
     position: 'absolute'
 }
 
+
+export const spinnerStyle = {     
+    width: '90%', 
+    alignItems: 'center', 
+    borderRadius: 5,
+    bottom: 40,
+    position: 'absolute'
+}
+
 export const TextButton = styled.Text`
     color: ${Colors.white}; 
     paddingTop:16;

@@ -35,7 +35,11 @@ export const getListEvent = (page = 1, limit=10) => async (dispatch, getState) =
     })
 }
 
-
+/**
+ * função monta uma uma lista com o header ( dia - mes - ano )
+ * para lista pa pagina principal
+ * @param {data da requisiçaõ} data
+ */
 const montandoLista = (data) => dispatch => {
     let novalista = []
     let listaTemp = []    

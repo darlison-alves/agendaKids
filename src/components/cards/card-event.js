@@ -12,12 +12,9 @@ export default function CardEvent({
  }) {
     return (
         <Container>
-            <ContainerImage>
-                <Image
-                    style={{width: 70, height: 90}}
-                    source={{uri: image}}
-                />
-            </ContainerImage>
+            
+           
+
             <CardBody>
                 <CardTitle>{title}</CardTitle>
                 <CardDescriptionBody>
@@ -32,3 +29,13 @@ export default function CardEvent({
         </Container>
     )
 }
+
+ /**
+             <ContainerImage>
+                <Image
+                    style={{width: 70, height: 90}}
+                    source={{uri: image}}
+                />
+            </ContainerImage>
+            
+             */

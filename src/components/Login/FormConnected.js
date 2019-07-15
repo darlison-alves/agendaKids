@@ -6,7 +6,8 @@ import Form from './Form'
 import { login } from '../../actions/user'
 
 const mapStateToProps = state => ({
-  error: state.user.error
+  error: state.user.error,
+  loading: state.user.loading
 });
 
 const mapDispatchToProps = dispatch =>

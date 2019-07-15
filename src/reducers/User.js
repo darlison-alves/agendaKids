@@ -4,21 +4,30 @@ export const LOGIN_ERROR = ''
 
 const INITIAL_STATE = {
     token: '',
-    error: ''
+    error: '',
+    loading: false
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case LOGIN_LOADING:
+            return {
+                ...state,
+                loading: true,
+                error: ""
+            }
         case GET_LOGIN:
             return {
                 ...state,
                 token: action.payload,
-                error: ''
+                error: '',
+                loading: false
             }
         case LOGIN_ERROR:
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
+                loading: false
             }
         default:
             return state
